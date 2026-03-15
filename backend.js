@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 const { JsonRpcProvider, Wallet, Contract } = require('ethers');
-const serviceAccount = require("../e-detection-system-firebase-adminsdk-fbsvc-fdc9579bfb.json");
+const serviceAccount = require("./e-detection-system-e96dc-firebase-adminsdk-fbsvc-94ea08bc0c.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 databaseURL: 'https://e-detection-system-e96dc-default-rtdb.asia-southeast1.firebasedatabase.app/'

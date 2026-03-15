@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeTECT — Smart Road Pothole Detection System | Pune, India</title>
+    <meta name="description" content="DeTECT is an IoT + Blockchain powered pothole detection system successfully tested across Pune. Real-time road monitoring for safer cities.">
+    <meta name="keywords" content="pothole detection, smart road, IoT, Pune, blockchain, road safety, smart city">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Notable&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- MapLibre for mini map preview -->
+    <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- Lens Effect Overlay -->
+    <div class="lens-overlay" id="lens-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" stroke="url(#logoGrad)" stroke-width="2.5"/>
+                        <circle cx="16" cy="16" r="7" fill="url(#logoGrad)" opacity="0.3"/>
+                        <circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+                                <stop stop-color="#6366f1"/>
+                                <stop offset="1" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <span class="logo-text">DE<span class="logo-accent">TECT</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+                <li><a href="#map-preview" class="nav-link" data-section="map-preview">Live Map</a></li>
+                <li><a href="#tested" class="nav-link" data-section="tested">Tested</a></li>
+                <li><a href="#tech" class="nav-link" data-section="tech">Tech Stack</a></li>
+            </ul>
+            <!-- Role Buttons -->
+            <div class="nav-roles">
+                <a href="https://pmc.gov.in" target="_blank" class="role-btn role-gov" id="nav-role-gov">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 4V6H1V4L7 1Z" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="6" width="2" height="5" stroke="currentColor" stroke-width="1.2"/><rect x="6" y="6" width="2" height="5" stroke="currentColor" stroke-width="1.2"/><rect x="10" y="6" width="2" height="5" stroke="currentColor" stroke-width="1.2"/><rect x="1" y="11" width="12" height="2" stroke="currentColor" stroke-width="1.2"/></svg>
+                    <span>Government</span>
+                </a>
+                <a href="#" class="role-btn role-detect" id="nav-role-detect" onclick="alert('Employee Detection Dashboard — Coming Soon!')">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M1 13C1 10.2 3.7 8 7 8C10.3 8 13 10.2 13 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    <span>Detect</span>
+                </a>
+            </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-links">
+            <li><a href="#home" class="mobile-link">Home</a></li>
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#features" class="mobile-link">Features</a></li>
+            <li><a href="#map-preview" class="mobile-link">Live Map</a></li>
+            <li><a href="#tested" class="mobile-link">Tested</a></li>
+            <li><a href="#tech" class="mobile-link">Tech Stack</a></li>
+        </ul>
+        <div class="mobile-roles">
+            <a href="https://pmc.gov.in" target="_blank" class="role-btn role-gov">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 4V6H1V4L7 1Z" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="6" width="2" height="5" stroke="currentColor" stroke-width="1.2"/><rect x="6" y="6" width="2" height="5" stroke="currentColor" stroke-width="1.2"/><rect x="10" y="6" width="2" height="5" stroke="currentColor" stroke-width="1.2"/><rect x="1" y="11" width="12" height="2" stroke="currentColor" stroke-width="1.2"/></svg>
+                Government Portal
+            </a>
+            <a href="#" class="role-btn role-detect" onclick="alert('Employee Detection Dashboard — Coming Soon!')">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M1 13C1 10.2 3.7 8 7 8C10.3 8 13 10.2 13 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                Employee Detect
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-particles" id="hero-particles"></div>
+            <div class="hero-gradient"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge" data-animate="fade-up" data-delay="0">
+                <span class="badge-dot"></span>
+                <span>IoT + Blockchain Powered</span>
+            </div>
+            <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                <span class="title-line">SMART ROAD</span>
+                <span class="title-line title-gradient">POTHOLE DETECTION</span>
+                <span class="title-line">SYSTEM</span>
+            </h1>
+            <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
+                Real-time pothole detection using IoT sensors with blockchain-verified reporting. Making Pune's roads safer, one pothole at a time.
+            </p>
+            <div class="hero-actions" data-animate="fade-up" data-delay="300">
+                <a href="#map-preview" class="btn btn-primary" id="hero-cta-primary">
+                    <span>View Live Map</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#about" class="btn btn-ghost" id="hero-cta-secondary">
+                    <span>Learn More</span>
+                </a>
+            </div>
+            <div class="hero-stats" data-animate="fade-up" data-delay="400">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="4">0</span>
+                    <span class="stat-label">Zones Tested</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" id="hero-live-count">—</span>
+                    <span class="stat-label">Live Detections</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">IoT</span>
+                    <span class="stat-label">Powered</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual" data-animate="fade-left" data-delay="200">
+            <div class="hero-image-wrapper">
+                <img src="assets/pothole_hero.png" alt="Pothole Detection System" class="hero-image">
+                <div class="hero-image-glow"></div>
+                <div class="floating-tag tag-1">
+                    <span class="tag-icon">📡</span>
+                    <span>IoT Sensor Active</span>
+                </div>
+                <div class="floating-tag tag-2">
+                    <span class="tag-icon">⛓️</span>
+                    <span>Blockchain Verified</span>
+                </div>
+                <div class="floating-tag tag-3">
+                    <span class="tag-icon">🎯</span>
+                    <span>Severity: High</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" id="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">About the Project</span>
+                <h2 class="section-title">REVOLUTIONIZING <span class="text-gradient">ROAD SAFETY</span></h2>
+                <p class="section-desc">An end-to-end IoT solution that uses vibration and ultrasonic sensors mounted on vehicles to detect potholes in real-time, with location data stored immutably on the Ethereum blockchain.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card" data-animate="fade-up" data-delay="0">
+                    <div class="about-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 5L35 15V25L20 35L5 25V15L20 5Z" stroke="url(#grad1)" stroke-width="2" fill="none"/>
+                            <circle cx="20" cy="20" r="6" fill="url(#grad1)" opacity="0.3"/>
+                            <defs><linearGradient id="grad1" x1="5" y1="5" x2="35" y2="35"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>IOT SENSING</h3>
+                    <p>ESP32-based sensors with accelerometer and ultrasonic modules detect road anomalies with high precision.</p>
+                </div>
+                <div class="about-card" data-animate="fade-up" data-delay="100">
+                    <div class="about-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <rect x="5" y="15" width="10" height="15" rx="1" stroke="url(#grad2)" stroke-width="2"/>
+                            <rect x="15" y="10" width="10" height="20" rx="1" stroke="url(#grad2)" stroke-width="2"/>
+                            <rect x="25" y="5" width="10" height="25" rx="1" stroke="url(#grad2)" stroke-width="2"/>
+                            <line x1="5" y1="35" x2="35" y2="35" stroke="url(#grad2)" stroke-width="2"/>
+                            <defs><linearGradient id="grad2" x1="5" y1="5" x2="35" y2="35"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>REAL-TIME MAPPING</h3>
+                    <p>Potholes are plotted on an interactive map with severity-based color coding in real time via Firebase.</p>
+                </div>
+                <div class="about-card" data-animate="fade-up" data-delay="200">
+                    <div class="about-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M8 20L16 28L32 12" stroke="url(#grad3)" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <circle cx="20" cy="20" r="16" stroke="url(#grad3)" stroke-width="2" fill="none"/>
+                            <defs><linearGradient id="grad3" x1="4" y1="4" x2="36" y2="36"><stop stop-color="#10b981"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>BLOCKCHAIN PROOF</h3>
+                    <p>Every detection is recorded on Ethereum (Sepolia) for tamper-proof, transparent, and verifiable public infrastructure data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features-section" id="features">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Core Features</span>
+                <h2 class="section-title">BUILT FOR <span class="text-gradient">SMART CITIES</span></h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-animate="fade-up" data-delay="0">
+                    <div class="feature-number">01</div>
+                    <h3>VIBRATION ANALYSIS</h3>
+                    <p>Advanced accelerometer algorithms differentiate between normal road bumps and actual potholes with severity scoring.</p>
+                    <div class="feature-glow"></div>
+                </div>
+                <div class="feature-card" data-animate="fade-up" data-delay="100">
+                    <div class="feature-number">02</div>
+                    <h3>GPS TRACKING</h3>
+                    <p>Precise geo-location tagging ensures each pothole is accurately mapped with latitude and longitude coordinates.</p>
+                    <div class="feature-glow"></div>
+                </div>
+                <div class="feature-card" data-animate="fade-up" data-delay="200">
+                    <div class="feature-number">03</div>
+                    <h3>SEVERITY CLASSIFICATION</h3>
+                    <p>Green (1-4), Orange (5-7), Red (8-10) severity scale enables prioritized road maintenance allocation.</p>
+                    <div class="feature-glow"></div>
+                </div>
+                <div class="feature-card" data-animate="fade-up" data-delay="300">
+                    <div class="feature-number">04</div>
+                    <h3>IMMUTABLE RECORDS</h3>
+                    <p>Smart contract on Ethereum stores every pothole report as a permanent, verifiable on-chain transaction.</p>
+                    <div class="feature-glow"></div>
+                </div>
+                <div class="feature-card" data-animate="fade-up" data-delay="400">
+                    <div class="feature-number">05</div>
+                    <h3>FIREBASE SYNC</h3>
+                    <p>Real-time database synchronization powers instant map updates as new potholes are detected by any connected device.</p>
+                    <div class="feature-glow"></div>
+                </div>
+                <div class="feature-card" data-animate="fade-up" data-delay="500">
+                    <div class="feature-number">06</div>
+                    <h3>MULTI-LAYER MAP</h3>
+                    <p>Toggle between street, satellite, and dark mode views for comprehensive road surface analysis and monitoring.</p>
+                    <div class="feature-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Map Preview Section -->
+    <section class="section map-preview-section" id="map-preview">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Live Detection Map</span>
+                <h2 class="section-title">EXPLORE <span class="text-gradient">PUNE'S ROADS</span></h2>
+                <p class="section-desc">Preview our real-time pothole detection map below. Click "Open Full Map" for the complete interactive experience.</p>
+            </div>
+            <div class="mini-map-wrapper" data-animate="fade-up" data-delay="100">
+                <div class="mini-map-container">
+                    <div id="mini-map"></div>
+                    <div class="mini-map-overlay-ui">
+                        <div class="mini-map-badge">
+                            <span class="badge-dot"></span>
+                            <span>Live Data from Firebase</span>
+                        </div>
+                        <a href="frontend.html" class="mini-map-fullscreen-btn" id="mini-map-open-full">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 6V2H6M10 2H14V6M14 10V14H10M6 14H2V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span>Open Full Map</span>
+                        </a>
+                    </div>
+                    <div class="mini-map-legend">
+                        <div class="mini-legend-item">
+                            <span class="mini-dot green"></span>Low
+                        </div>
+                        <div class="mini-legend-item">
+                            <span class="mini-dot orange"></span>Medium
+                        </div>
+                        <div class="mini-legend-item">
+                            <span class="mini-dot red"></span>High
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tested in Pune Section -->
+    <section class="section tested-section" id="tested">
+        <div class="tested-bg">
+            <div class="tested-particles"></div>
+        </div>
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Prototype Validation</span>
+                <h2 class="section-title">SUCCESSFULLY TESTED IN <span class="text-gradient">PUNE</span></h2>
+                <p class="section-desc">Our prototype has been tested across multiple zones in Pune, Maharashtra — detecting and recording potholes with blockchain-verified accuracy.</p>
+            </div>
+
+            <!-- Validity Badge -->
+            <div class="validity-banner" data-animate="fade-up" data-delay="100">
+                <div class="validity-content">
+                    <div class="validity-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <circle cx="28" cy="28" r="26" stroke="url(#validGrad)" stroke-width="2.5" fill="none"/>
+                            <path d="M18 28L25 35L38 22" stroke="url(#validGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs><linearGradient id="validGrad" x1="0" y1="0" x2="56" y2="56"><stop stop-color="#10b981"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <div class="validity-text">
+                        <h3>✅ PROTOTYPE VALIDATED</h3>
+                        <p>Successfully tested across <strong>multiple zones</strong> in Pune, India. All detections verified via Firebase real-time database and Ethereum Sepolia smart contract.</p>
+                    </div>
+                    <div class="validity-badge-seal">
+                        <span class="seal-text">VERIFIED</span>
+                        <span class="seal-year">2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Cards -->
+            <div class="locations-grid">
+                <!-- Katraj Card -->
+                <div class="location-card" data-animate="fade-up" data-delay="0" id="card-katraj">
+                    <div class="location-image">
+                        <img src="assets/katraj_area.png" alt="Katraj, Pune" loading="lazy">
+                        <div class="location-image-overlay"></div>
+                        <div class="location-status">
+                            <span class="status-dot"></span>
+                            <span>Tested</span>
+                        </div>
+                    </div>
+                    <div class="location-info">
+                        <h3>KATRAJ</h3>
+                        <p class="location-area">Katraj Ghat & Surroundings</p>
+                        <div class="location-stats">
+                            <div class="loc-stat">
+                                <span class="loc-stat-value">✓</span>
+                                <span class="loc-stat-label">Zone Tested</span>
+                            </div>
+                            <div class="loc-stat">
+                                <span class="loc-stat-value loc-severe">High</span>
+                                <span class="loc-stat-label">Traffic Density</span>
+                            </div>
+                        </div>
+                        <div class="location-tags">
+                            <span class="loc-tag">Ghat Road</span>
+                            <span class="loc-tag">Heavy Traffic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PCMC Card -->
+                <div class="location-card" data-animate="fade-up" data-delay="100" id="card-pcmc">
+                    <div class="location-image">
+                        <img src="assets/pcmc_area.png" alt="PCMC, Pune" loading="lazy">
+                        <div class="location-image-overlay"></div>
+                        <div class="location-status">
+                            <span class="status-dot"></span>
+                            <span>Tested</span>
+                        </div>
+                    </div>
+                    <div class="location-info">
+                        <h3>PCMC</h3>
+                        <p class="location-area">Pimpri-Chinchwad Municipal Corp.</p>
+                        <div class="location-stats">
+                            <div class="loc-stat">
+                                <span class="loc-stat-value">✓</span>
+                                <span class="loc-stat-label">Zone Tested</span>
+                            </div>
+                            <div class="loc-stat">
+                                <span class="loc-stat-value loc-moderate">Medium</span>
+                                <span class="loc-stat-label">Traffic Density</span>
+                            </div>
+                        </div>
+                        <div class="location-tags">
+                            <span class="loc-tag">Industrial Zone</span>
+                            <span class="loc-tag">Wide Roads</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sangvi Card -->
+                <div class="location-card" data-animate="fade-up" data-delay="200" id="card-sangvi">
+                    <div class="location-image">
+                        <img src="assets/sangvi_area.png" alt="Sangvi, Pune" loading="lazy">
+                        <div class="location-image-overlay"></div>
+                        <div class="location-status">
+                            <span class="status-dot"></span>
+                            <span>Tested</span>
+                        </div>
+                    </div>
+                    <div class="location-info">
+                        <h3>SANGVI</h3>
+                        <p class="location-area">Sangvi Residential Area</p>
+                        <div class="location-stats">
+                            <div class="loc-stat">
+                                <span class="loc-stat-value">✓</span>
+                                <span class="loc-stat-label">Zone Tested</span>
+                            </div>
+                            <div class="loc-stat">
+                                <span class="loc-stat-value loc-low">Low</span>
+                                <span class="loc-stat-label">Traffic Density</span>
+                            </div>
+                        </div>
+                        <div class="location-tags">
+                            <span class="loc-tag">Residential</span>
+                            <span class="loc-tag">Narrow Lanes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shivaji Nagar Card -->
+                <div class="location-card" data-animate="fade-up" data-delay="300" id="card-shivajinagar">
+                    <div class="location-image">
+                        <img src="assets/shivajinagar_area.png" alt="Shivaji Nagar, Pune" loading="lazy">
+                        <div class="location-image-overlay"></div>
+                        <div class="location-status">
+                            <span class="status-dot"></span>
+                            <span>Tested</span>
+                        </div>
+                    </div>
+                    <div class="location-info">
+                        <h3>SHIVAJI NAGAR</h3>
+                        <p class="location-area">Central Commercial District</p>
+                        <div class="location-stats">
+                            <div class="loc-stat">
+                                <span class="loc-stat-value">✓</span>
+                                <span class="loc-stat-label">Zone Tested</span>
+                            </div>
+                            <div class="loc-stat">
+                                <span class="loc-stat-value loc-severe">High</span>
+                                <span class="loc-stat-label">Traffic Density</span>
+                            </div>
+                        </div>
+                        <div class="location-tags">
+                            <span class="loc-tag">Commercial Hub</span>
+                            <span class="loc-tag">Peak Traffic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pune Map Mini -->
+            <div class="pune-summary" data-animate="fade-up" data-delay="200">
+                <div class="pune-summary-card">
+                    <div class="pune-summary-left">
+                        <h3>PUNE COVERAGE SUMMARY</h3>
+                        <p>Our prototype was deployed across diverse road conditions — from ghat roads to commercial districts — to validate detection accuracy across varying terrains and traffic densities.</p>
+                    </div>
+                    <div class="pune-summary-right">
+                        <div class="summary-stat">
+                            <span class="summary-number" id="summary-live-count">—</span>
+                            <span class="summary-label">Live Detections</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="summary-number" data-count="4">0</span>
+                            <span class="summary-label">Zones Covered</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="summary-number">⛓️</span>
+                            <span class="summary-label">On-Chain Verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="section tech-section" id="tech">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Technology</span>
+                <h2 class="section-title">POWERED BY <span class="text-gradient">MODERN TECH</span></h2>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item" data-animate="fade-up" data-delay="0">
+                    <div class="tech-icon-wrap">
+                        <span class="tech-emoji">🔌</span>
+                    </div>
+                    <span class="tech-name">ESP32</span>
+                    <span class="tech-role">IoT Controller</span>
+                </div>
+                <div class="tech-item" data-animate="fade-up" data-delay="50">
+                    <div class="tech-icon-wrap">
+                        <span class="tech-emoji">🔥</span>
+                    </div>
+                    <span class="tech-name">Firebase</span>
+                    <span class="tech-role">Realtime DB</span>
+                </div>
+                <div class="tech-item" data-animate="fade-up" data-delay="100">
+                    <div class="tech-icon-wrap">
+                        <span class="tech-emoji">⛓️</span>
+                    </div>
+                    <span class="tech-name">Ethereum</span>
+                    <span class="tech-role">Blockchain</span>
+                </div>
+                <div class="tech-item" data-animate="fade-up" data-delay="150">
+                    <div class="tech-icon-wrap">
+                        <span class="tech-emoji">🗺️</span>
+                    </div>
+                    <span class="tech-name">MapLibre GL</span>
+                    <span class="tech-role">Vector Maps</span>
+                </div>
+                <div class="tech-item" data-animate="fade-up" data-delay="200">
+                    <div class="tech-icon-wrap">
+                        <span class="tech-emoji">🟢</span>
+                    </div>
+                    <span class="tech-name">Node.js</span>
+                    <span class="tech-role">Backend</span>
+                </div>
+                <div class="tech-item" data-animate="fade-up" data-delay="250">
+                    <div class="tech-icon-wrap">
+                        <span class="tech-emoji">📜</span>
+                    </div>
+                    <span class="tech-name">Solidity</span>
+                    <span class="tech-role">Smart Contract</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contact Section -->
+    <section class="section cta-section" id="contact">
+        <div class="cta-bg">
+            <div class="cta-gradient-orb cta-orb-1"></div>
+            <div class="cta-gradient-orb cta-orb-2"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content" data-animate="fade-up">
+                <span class="section-tag">Get Involved</span>
+                <h2 class="section-title">READY TO MAKE ROADS <span class="text-gradient">SAFER?</span></h2>
+                <p class="section-desc">Whether you're a municipal authority, an NGO, or a tech enthusiast — join us in building smarter, safer roads for India.</p>
+                <div class="cta-actions">
+                    <a href="frontend.html" class="btn btn-primary btn-lg" id="cta-launch-map">
+                        <span>Launch Live Map</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="btn btn-outline btn-lg" id="cta-github">
+                        <span>View on GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">DE<span class="logo-accent">TECT</span></span>
+                    <p>Making India's roads smarter and safer through IoT and Blockchain technology.</p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#tested">Tested Areas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>TECH</h4>
+                    <ul>
+                        <li><a href="#tech">Tech Stack</a></li>
+                        <li><a href="frontend.html">Live Map</a></li>
+                        <li><a href="#">Smart Contract</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 DeTECT. Built with ❤️ for safer roads in Pune.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MapLibre GL JS for mini map -->
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+
+    <!-- Firebase for mini map -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script src="script.js"></script>
+
+    <script>
+        // ============================
+        // MINI MAP INITIALIZATION
+        // ============================
+        document.addEventListener('DOMContentLoaded', () => {
+            const miniMapEl = document.getElementById('mini-map');
+            if (!miniMapEl) return;
+
+            // Initialize Firebase for mini map
+            const fbConfig = {
+                apiKey: "demo",
+                authDomain: "e-detection-system.firebaseapp.com",
+                databaseURL: "https://e-detection-system-e96dc-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "e-detection-system"
+            };
+
+            // Firebase may already be initialized by script.js or another call
+            let fbApp;
+            if (!firebase.apps.length) {
+                fbApp = firebase.initializeApp(fbConfig);
+            } else {
+                fbApp = firebase.apps[0];
+            }
+
+            const miniDb = firebase.database();
+            const miniPotholesRef = miniDb.ref("potholes");
+
+            // Create mini map
+            const miniMap = new maplibregl.Map({
+                container: 'mini-map',
+                style: 'https://tiles.openfreemap.org/styles/liberty',
+                center: [73.8567, 18.5204],
+                zoom: 11,
+                maxZoom: 18,
+                interactive: true,
+                attributionControl: false
+            });
+
+            miniMap.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+            // Add pothole markers to mini map
+            const miniMarkers = [];
+
+            miniPotholesRef.on("child_added", function(snapshot) {
+                const pothole = snapshot.val();
+                const lat = pothole.latitude;
+                const lon = pothole.longitude;
+                const severity = pothole.severity;
+
+                let color = '#10b981';
+                if (severity > 4 && severity <= 7) color = '#f59e0b';
+                if (severity > 7) color = '#ef4444';
+
+                const el = document.createElement('div');
+                el.style.cssText = `
+                    width: 10px;
+                    height: 10px;
+                    background: ${color};
+                    border-radius: 50%;
+                    border: 1.5px solid rgba(255,255,255,0.3);
+                    box-shadow: 0 0 8px ${color}80;
+                `;
+
+                const marker = new maplibregl.Marker({ element: el })
+                    .setLngLat([lon, lat])
+                    .addTo(miniMap);
+
+                miniMarkers.push(marker);
+
+                // Update live counters on the landing page
+                const heroEl = document.getElementById('hero-live-count');
+                const summaryEl = document.getElementById('summary-live-count');
+                if (heroEl) heroEl.textContent = miniMarkers.length;
+                if (summaryEl) summaryEl.textContent = miniMarkers.length;
+            });
+
+            // Fit to markers after data loads
+            setTimeout(() => {
+                if (miniMarkers.length > 0) {
+                    const bounds = new maplibregl.LngLatBounds();
+                    miniMarkers.forEach(m => bounds.extend(m.getLngLat()));
+                    miniMap.fitBounds(bounds, { padding: 40, maxZoom: 14 });
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
