@@ -1,0 +1,5 @@
+mkdir pothole-backend
+cd pothole-backend
+npm init -y
+npm install ethers firebase-admin
+

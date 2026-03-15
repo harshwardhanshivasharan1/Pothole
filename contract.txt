@@ -1,0 +1,6 @@
+0xf4887b5c9f6b39ef93132e606aaa3e8710e310c0
+/home/spoidermon/Desktop/pothole test/e-detection-system-firebase-adminsdk-fbsvc-fdc9579bfb.json
+https://e-detection-system-default-rtdb.firebaseio.com/
+/home/spoidermon/Desktop/pothole test/ContractABI.json
+https://powerful-autumn-cherry.ethereum-sepolia.quiknode.pro/8b5ba4fd00e486214a9b8af18536e21f91bf370e/
+0d5ac20105f62949cad0fd2b45fb2db603cd7af4a00b9ce7ac54d0ed4de7013e
