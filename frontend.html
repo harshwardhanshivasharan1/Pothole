@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Pothole Detection Map</title>
+
+<meta charset="utf-8"/>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+body{
+font-family:Arial;
+}
+
+#map{
+height:90vh;
+}
+
+.legend{
+background:white;
+padding:10px;
+border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2 style="text-align:center">Smart Road Pothole Monitoring</h2>
+
+<div id="map"></div>
+
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+
+const firebaseConfig = {
+
+apiKey: "demo",
+authDomain: "e-detection-system.firebaseapp.com",
+databaseURL: "https://e-detection-system-e96dc-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId: "e-detection-system"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+const potholesRef = db.ref("potholes");
+
+/* MAP */
+
+var map = L.map('map',{
+    maxZoom:22
+}).setView([18.5204,73.8567],18);
+
+
+/* ROAD MAP */
+
+var roadMap = L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+    maxZoom:22,
+    attribution:'© OpenStreetMap contributors'
+});
+
+/* SATELLITE MAP */
+
+var satelliteMap = L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+{
+    maxZoom:22,
+    attribution:'Tiles © Esri'
+});
+
+roadMap.addTo(map);
+/* LAYER CONTROL */
+
+var baseMaps = {
+"Road Map": roadMap,
+"Satellite View": satelliteMap
+};
+
+L.control.layers(baseMaps).addTo(map);
+
+L.control.layers(baseMaps).addTo(map);
+
+/* ADD POTHOLES FROM FIREBASE */
+
+potholesRef.on("child_added",function(snapshot){
+
+var pothole = snapshot.val();
+
+var lat = pothole.latitude;
+var lon = pothole.longitude;
+var severity = pothole.severity;
+
+var color;
+
+if(severity <=4)
+color="green";
+
+else if(severity <=7)
+color="orange";
+
+else
+color="red";
+
+
+L.circleMarker([lat,lon],{
+
+radius:5,
+color:color,
+fillColor:color,
+fillOpacity:0.9
+
+})
+
+.addTo(map)
+L.circleMarker([lat,lon],{
+
+radius:5,
+color:color,
+fillColor:color,
+fillOpacity:0.9
+
+})
+.addTo(map)
+
+.bindPopup(
+
+"<b>Pothole Detected</b><br>"+
+"Severity: "+severity+"<br>"+
+"Latitude: "+lat+"<br>"+
+"Longitude: "+lon
+
+);
+
+});
+
+
+/* LEGEND */
+
+var legend = L.control({position:'bottomright'});
+
+legend.onAdd=function(){
+
+var div=L.DomUtil.create('div','legend');
+
+div.innerHTML += "<b>Severity</b><br>";
+div.innerHTML += "🟢 Green (1-4)<br>";
+div.innerHTML += "🟠 Orange (5-7)<br>";
+div.innerHTML += "🔴 Red (8-10)<br>";
+
+return div;
+
+};
+
+legend.addTo(map);
+
+</script>
+
+</body>
+</html>
