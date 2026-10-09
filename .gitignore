@@ -1,1 +1,31 @@
 node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Firebase Admin SDK credential files
+*firebase-adminsdk*.json
+*-adminsdk-*.json
+
+# Contract text files
+contract.txt
+Contract ABI
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Coverage output
+coverage/
+.nyc_output/
+
+# Keys and certificates
+*.pem
+*.key

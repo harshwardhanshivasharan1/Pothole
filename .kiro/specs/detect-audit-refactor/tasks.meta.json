@@ -1,0 +1,430 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Remove tracked credential files and hardcoded secrets": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391718
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210401477
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210485585
+      }
+    ],
+    "1.2 Update `.gitignore` with comprehensive secret patterns": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391749
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210405251
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210489277
+      }
+    ],
+    "1.3 Update `.env.example` with all required variable names": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391781
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210409300
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210492891
+      }
+    ],
+    "2.1 Create the `src/` directory hierarchy": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391828
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210498527
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211422783
+      }
+    ],
+    "2.2 Migrate frontend files to `src/frontend/`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391852
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211431767
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211950674
+      }
+    ],
+    "3.1 Rewrite `package.json` with pinned dependencies and correct metadata": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391881
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210503525
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211427253
+      }
+    ],
+    "4.1 Write the helpers module with all four pure utility functions": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391911
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211437349
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211957488
+      }
+    ],
+    "5.1 Write the bridge module": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391945
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211968489
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212492672
+      }
+    ],
+    "6. Checkpoint — helpers and bridge tests pass": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210391980
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212555173
+      }
+    ],
+    "7.1 Write the server entry point": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392011
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212561972
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214235797
+      }
+    ],
+    "8. Checkpoint — all server tests pass": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392033
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214262555
+      }
+    ],
+    "9.1 Create `src/frontend/js/firebaseConfig.js`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392063
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214285664
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793215002490
+      }
+    ],
+    "9.2 Create `src/frontend/js/map.js` for the map dashboard": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392096
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793215007270
+      }
+    ],
+    "9.3 Update `src/frontend/frontend.html` to use `map.js` and `firebaseConfig.js`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392128
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793215013315
+      }
+    ],
+    "9.4 Update `src/frontend/script.js` (landing page) for canonical path and offline handling": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392158
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793215018385
+      }
+    ],
+    "9.5 Update `src/frontend/index.html` to load updated `script.js` and `firebaseConfig.js`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392188
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793215024198
+      }
+    ],
+    "10.1 Create `.github/workflows/ci.yml`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392222
+      }
+    ],
+    "11.1 Rewrite `README.md`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392250
+      }
+    ],
+    "12. Final checkpoint — full test suite passes and CI is green": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210392277
+      }
+    ],
+    "1. Security baseline — clean up secrets and harden `.gitignore`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793210492910
+      }
+    ],
+    "3. `package.json` overhaul": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211427292
+      }
+    ],
+    "2. Project structure scaffolding": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211950715
+      }
+    ],
+    "4. Implement `src/backend/helpers.js`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211957531
+      }
+    ],
+    "4.2 Write property test for `validateRecord` — latitude boundary (Property 1)": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211974707
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212499602
+      }
+    ],
+    "4.3 Write property test for `validateRecord` — longitude boundary (Property 2)": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211982422
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212504760
+      }
+    ],
+    "4.4 Write property test for `validateRecord` — severity boundary (Property 3)": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211988554
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212509157
+      }
+    ],
+    "4.5 Write property test for `scaleCoordinate` (Property 5)": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211994209
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212525715
+      }
+    ],
+    "4.6 Write property test for `getSeverityBand` (Property 6)": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793211998542
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212531803
+      }
+    ],
+    "4.7 Write unit tests for `mapSeverityToChain` and boundary examples for helpers": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212005568
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212538306
+      }
+    ],
+    "5. Implement `src/backend/bridge.js`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212492722
+      }
+    ],
+    "5.2 Write property test for bridge — invalid records never reach the contract (Property 4)": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212571685
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214240911
+      }
+    ],
+    "5.3 Write unit tests for bridge success and error paths": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793212580291
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214246341
+      }
+    ],
+    "7. Implement `src/backend/server.js`": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214235828
+      }
+    ],
+    "7.2 Write property test for `/health` endpoint (Property 7)": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214270500
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214992307
+      }
+    ],
+    "7.3 Write unit test for `/api/status` endpoint": [
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214278597
+      },
+      {
+        "executionId": "43d6838d-c845-4aa2-acfe-dfb00c478184",
+        "chatSessionId": "sess_9fe0d22d-75c5-44e9-ba90-cd2f6e6a1153",
+        "timestamp": 1793214996773
+      }
+    ]
+  }
+}

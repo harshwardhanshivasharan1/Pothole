@@ -1,13 +1,17 @@
+require('dotenv').config();
 const admin = require('firebase-admin');
 const { JsonRpcProvider, Wallet, Contract } = require('ethers');
-const serviceAccount = require("./e-detection-system-e96dc-firebase-adminsdk-fbsvc-94ea08bc0c.json");
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-databaseURL: 'https://e-detection-system-e96dc-default-rtdb.asia-southeast1.firebasedatabase.app/'
- });
+  credential: admin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY,
+  }),
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+});
 
-const provider = new JsonRpcProvider('https://powerful-autumn-cherry.ethereum-sepolia.quiknode.pro/8b5ba4fd00e486214a9b8af18536e21f91bf370e/');
-const wallet = new Wallet('0d5ac20105f62949cad0fd2b45fb2db603cd7af4a00b9ce7ac54d0ed4de7013e', provider);
+const provider = new JsonRpcProvider(process.env.RPC_URL);
+const wallet = new Wallet(process.env.PRIVATE_KEY, provider);
 
 const contractABI = 
   [
