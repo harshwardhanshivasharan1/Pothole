@@ -466,31 +466,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const liveDb = firebase.database();
 
-            // Monitor connection state — show '—' when offline
+            // Track connection state so the value listener can guard against
+            // overwriting '—' with stale cached data while offline.
+            let isConnected = false;
+
+            // Helper — update all live-data stat elements on this page
+            function setLiveCount(value) {
+                const heroCount = document.getElementById('hero-live-count');
+                const summaryCount = document.getElementById('summary-live-count');
+                if (heroCount) heroCount.textContent = value;
+                if (summaryCount) summaryCount.textContent = value;
+            }
+
+            // Monitor connection state — show '—' in all live-data fields when offline
             liveDb.ref('.info/connected').on('value', function (snap) {
-                if (!snap.val()) {
-                    const heroCount = document.getElementById('hero-live-count');
-                    const summaryCount = document.getElementById('summary-live-count');
-                    if (heroCount && heroCount.textContent === '—') return;
-                    if (heroCount) heroCount.textContent = '—';
-                    if (summaryCount) summaryCount.textContent = '—';
+                isConnected = !!snap.val();
+                if (!isConnected) {
+                    setLiveCount('—');
                 }
             });
 
-            // Use canonical lowercase 'potholes' path
+            // Use canonical lowercase 'potholes' path to count detections
             liveDb.ref('potholes').on('value', function (snapshot) {
-                const count = snapshot.numChildren();
-                const heroCount = document.getElementById('hero-live-count');
-                const summaryCount = document.getElementById('summary-live-count');
-                if (heroCount) heroCount.textContent = count;
-                if (summaryCount) summaryCount.textContent = count;
+                // Only update the display when the SDK is confirmed online;
+                // cached reads while offline must not overwrite the '—' indicator.
+                if (!isConnected) return;
+                setLiveCount(snapshot.numChildren());
             }, function (error) {
-                // Permission denied or other error — show placeholder
+                // Permission denied or other read error — show placeholder
                 console.warn('Firebase live count error:', error.message);
-                const heroCount = document.getElementById('hero-live-count');
-                const summaryCount = document.getElementById('summary-live-count');
-                if (heroCount) heroCount.textContent = '—';
-                if (summaryCount) summaryCount.textContent = '—';
+                setLiveCount('—');
             });
 
         } catch (err) {

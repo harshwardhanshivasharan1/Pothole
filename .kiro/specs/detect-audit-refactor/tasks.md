@@ -136,37 +136,37 @@ This plan converts the design into a sequenced set of coding tasks that a code-g
 - [x] 8. Checkpoint — all server tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 9. Frontend integration — Firebase path correction and config extraction
+- [x] 9. Frontend integration — Firebase path correction and config extraction
   - [x] 9.1 Create `src/frontend/js/firebaseConfig.js`
     - Declare `firebaseConfig` object with public fields only: `apiKey`, `authDomain`, `databaseURL`, `projectId`
     - Use correct database URL for project `e-detection-system-e96dc`
     - No private keys, service-account credentials, or `process.env` references (browser file)
     - _Requirements: 4.4, 7.1, 7.2_
 
-  - [-] 9.2 Create `src/frontend/js/map.js` for the map dashboard
+  - [x] 9.2 Create `src/frontend/js/map.js` for the map dashboard
     - Import Firebase Client SDK (CDN or bundled); initialise using `firebaseConfig`
     - Attach `child_added` listener on canonical path `potholes` (lowercase)
     - On each event: extract `latitude`, `longitude`, `severity`; add MapLibre GL marker at the coordinates
     - Monitor `.info/connected`; when `false` set all live-data DOM fields to `"—"`
     - _Requirements: 4.1, 4.2, 7.3, 7.4, 7.6_
 
-  - [-] 9.3 Update `src/frontend/frontend.html` to use `map.js` and `firebaseConfig.js`
+  - [x] 9.3 Update `src/frontend/frontend.html` to use `map.js` and `firebaseConfig.js`
     - Replace any inline Firebase initialisation and map logic with `<script src="js/firebaseConfig.js">` and `<script src="js/map.js">`
     - Ensure Firebase is initialised from `firebaseConfig.js` only (no duplicate `initializeApp` calls)
     - _Requirements: 7.1, 7.3_
 
-  - [-] 9.4 Update `src/frontend/script.js` (landing page) for canonical path and offline handling
+  - [x] 9.4 Update `src/frontend/script.js` (landing page) for canonical path and offline handling
     - Replace any reference to a non-canonical Firebase path with `potholes` (lowercase)
     - Attach Firebase Client SDK `value` listener on `potholes` to count records and update the live-count stat element
     - When Firebase SDK is offline, display `"—"` in all live-data fields
     - _Requirements: 4.3, 7.5, 7.6_
 
-  - [ ] 9.5 Update `src/frontend/index.html` to load updated `script.js` and `firebaseConfig.js`
+  - [x] 9.5 Update `src/frontend/index.html` to load updated `script.js` and `firebaseConfig.js`
     - Add `<script src="js/firebaseConfig.js">` before `script.js` if not already present
     - _Requirements: 7.1, 7.5_
 
-- [ ] 10. CI pipeline
-  - [~] 10.1 Create `.github/workflows/ci.yml`
+- [x] 10. CI pipeline
+  - [x] 10.1 Create `.github/workflows/ci.yml`
     - Define two jobs: `test` and `security`
     - `test` job: `ubuntu-latest`, Node.js 20, steps: `actions/checkout@v4`, `actions/setup-node@v4` (with npm cache), `npm ci`, `npm test`
     - `security` job: scan tracked files with `git ls-files | xargs grep -rE` for 64-char hex strings; fail if found outside `package-lock.json` and `node_modules`
@@ -174,8 +174,8 @@ This plan converts the design into a sequenced set of coding tasks that a code-g
     - Trigger on `push` and `pull_request` to `main`
     - _Requirements: 1.7, 1.8, 9.1–9.6_
 
-- [ ] 11. Documentation
-  - [~] 11.1 Rewrite `README.md`
+- [x] 11. Documentation
+  - [x] 11.1 Rewrite `README.md`
     - Update repository layout section to reflect the `src/backend/`, `src/frontend/`, `src/tests/` hierarchy
     - Add "Getting Started" section: copy `.env.example` → `.env`, populate each variable with a description
     - Add "Running the Server" section: `npm install && npm run start`, then open `http://localhost:3000`
@@ -185,7 +185,7 @@ This plan converts the design into a sequenced set of coding tasks that a code-g
     - Document the dual severity schema: 1–10 display scale (frontend/Firebase) vs 1–5 on-chain scale (Ethereum), and the `Math.ceil(severity / 2)` mapping
     - _Requirements: 10.1–10.7_
 
-- [~] 12. Final checkpoint — full test suite passes and CI is green
+- [x] 12. Final checkpoint — full test suite passes and CI is green
   - Ensure all tests pass, ask the user if questions arise.
 
 ---

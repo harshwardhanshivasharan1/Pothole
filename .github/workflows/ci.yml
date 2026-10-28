@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan for hardcoded 64-char hex strings (potential private keys)
+        run: |
+          # Get all tracked files excluding package-lock.json and node_modules
+          FILES=$(git ls-files | grep -v '^package-lock\.json$' | grep -v '^node_modules/')
+
+          if [ -z "$FILES" ]; then
+            echo "No files to scan."
+            exit 0
+          fi
+
+          # Search for 64-character hex strings in those files
+          MATCHES=$(echo "$FILES" | xargs grep -rE '[0-9a-fA-F]{64}' 2>/dev/null || true)
+
+          if [ -n "$MATCHES" ]; then
+            echo "ERROR: Potential hardcoded secrets (64-char hex strings) detected in tracked files:"
+            echo "$MATCHES"
+            exit 1
+          else
+            echo "No hardcoded 64-char hex strings found."
+          fi
+
+      - name: Scan for Firebase Admin SDK credential files
+        run: |
+          # Check if any tracked file names match firebase-adminsdk or -adminsdk- patterns
+          MATCHES=$(git ls-files | grep -E '(\*firebase-adminsdk\*\.json|.*firebase-adminsdk.*\.json|.*-adminsdk-.*\.json)' || true)
+
+          if [ -n "$MATCHES" ]; then
+            echo "ERROR: Firebase Admin SDK credential file(s) found in tracked files:"
+            echo "$MATCHES"
+            exit 1
+          else
+            echo "No Firebase Admin SDK credential files found."
+          fi
