@@ -10,7 +10,7 @@ node_modules/
 *firebase-adminsdk*.json
 *-adminsdk-*.json
 
-# Contract text files
+# Contract text files — contain private keys, never commit
 contract.txt
 Contract ABI
 

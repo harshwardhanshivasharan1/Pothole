@@ -73,6 +73,9 @@ app.get('/api/status', (_req, res) => {
 // server.js lives at src/backend/; frontend is at src/frontend/ — one level up.
 app.use(express.static(path.join(__dirname, '../frontend')));
 
+// Serve project-level assets (images etc.) at /assets
+app.use('/assets', express.static(path.join(__dirname, '../../assets')));
+
 // ---------------------------------------------------------------------------
 // 5. Start the Firebase → Ethereum bridge
 // ---------------------------------------------------------------------------

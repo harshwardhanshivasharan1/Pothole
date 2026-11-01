@@ -638,8 +638,11 @@
            MAP AREA
            ========================================== */
         .map-area {
-            flex: 1;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             overflow: hidden;
         }
 
@@ -1086,7 +1089,7 @@
                             <div class="style-preview sp-satellite"></div>
                             <div class="style-meta">
                                 <span class="style-name">Satellite</span>
-                                <span class="style-desc">Aerial satellite imagery</span>
+                                <span class="style-desc">OpenFreeMap light tiles</span>
                             </div>
                             <div class="style-check"></div>
                         </button>
@@ -1094,7 +1097,7 @@
                             <div class="style-preview sp-dark"></div>
                             <div class="style-meta">
                                 <span class="style-name">Dark</span>
-                                <span class="style-desc">CARTO dark basemap</span>
+                                <span class="style-desc">OpenFreeMap dark basemap</span>
                             </div>
                             <div class="style-check"></div>
                         </button>

@@ -18,11 +18,11 @@
  * to this file.
  */
 const firebaseConfig = {
-  apiKey:            "REPLACE_WITH_YOUR_WEB_API_KEY",
-  authDomain:        "e-detection-system-e96dc.firebaseapp.com",
-  databaseURL:       "https://e-detection-system-e96dc-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId:         "e-detection-system-e96dc",
-  storageBucket:     "e-detection-system-e96dc.appspot.com",
-  messagingSenderId: "REPLACE_WITH_YOUR_MESSAGING_SENDER_ID",
-  appId:             "REPLACE_WITH_YOUR_APP_ID"
+  apiKey:            "AIzaSyC40urq89qX-LjCvMi46XTPzm0_7vCs8yg",
+  authDomain:        "pothole-edetect.firebaseapp.com",
+  databaseURL:       "https://pothole-edetect-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:         "pothole-edetect",
+  storageBucket:     "pothole-edetect.firebasestorage.app",
+  messagingSenderId: "465064724361",
+  appId:             "1:465064724361:web:aaba77e6a03741afc40358"
 };
